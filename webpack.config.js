@@ -1,16 +1,28 @@
-var path=require('path');
+var path = require('path');
+//导入插件
+var ExtractTextPlugin = require('extract-text-webpack-plugin');
 
-
-
-var config={
-    entry:{
-        main:'./main'
+var config = {
+    entry: {
+        main: './main'
     },
-    output:{
-        path:path.join(__dirname,'./dist'),
-        publicPath:'./dist',
-        filename:'main.js'
-    }
+    output: {
+        path: path.join(__dirname, './dist'),
+        publicPath: '/dist/',
+        filename: 'main.js'
+    },
+    module: {
+        rules: [{
+            test: /\.css$/,
+            use: ExtractTextPlugin.extract({
+                use: 'css-loader',
+                fallback: 'style-loader'
+            })
+        }]
+    },
+    plugins: [
+        new ExtractTextPlugin("main.css")
+    ]
 }
 
-module.exports=config;
+module.exports = config;
