@@ -1,5 +1,7 @@
 <template>
-  <button @click="handleClick" :style="styles"></button>
+  <button @click="handleClick" :style="styles">
+    <slot></slot>
+  </button>
 </template>
 <script>
 export default {
@@ -30,16 +32,11 @@ button {
   color: #fff;
   padding: 4px 8px;
   width: 50px;
-  height: 30px;;
+  height: 30px;
 }
 button:active {
   position: relative;
   top: 1px;
   left: 1px;
 }
-
-
-
-
-
 </style>
