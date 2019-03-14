@@ -2,6 +2,8 @@ var path = require('path');
 //导入插件
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 const VueLoaderPlugin = require('vue-loader/lib/plugin');
+const cleanWebpackPlugin = require('clean-webpack-plugin');
+var HtmlWebpackPlugin = require('html-webpack-plugin'); //打包html的插件
 
 var config = {
     entry: {
@@ -34,11 +36,19 @@ var config = {
                 use: 'css-loader',
                 fallback: 'style-loader'
             })
+        }, {
+            test: /\.(png | jpg | gif)$/i,
+            use: [{
+                loader: 'url-loader'
+            }]
         }]
     },
-    plugins: [
+    plugins: [        
         new ExtractTextPlugin("main.css"),
-        new VueLoaderPlugin()
+        new VueLoaderPlugin(),
+        new HtmlWebpackPlugin({
+            filename: './index.html',
+        })
     ]
 };
 
