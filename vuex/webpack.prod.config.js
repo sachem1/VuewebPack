@@ -11,7 +11,8 @@ module.exports = merge(webpackBaseConfig, {
     output: {
         publicPath: '/dist/',
         // 将入口文件重命名为带有 20 位 hash 值的唯一文件
-        filename: '[name].[hash].js'
+        filename: '[name].[hash].js',
+        
     },
     plugins: [
         new ExtractTextPlugin({

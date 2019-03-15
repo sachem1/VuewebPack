@@ -8,7 +8,8 @@ var config = {
     output: {
         path: path.join(__dirname, './dist'),
         publicPath: '/dist/',
-        filename: 'main.js'
+        filename: 'main.js',
+        chunkFilename: '[name]'.chunk.js
     },
     module: {
         rules: [
@@ -43,7 +44,11 @@ var config = {
         ]
     },
     plugins: [
-        new ExtractTextPlugin("main.css")
+        new ExtractTextPlugin("main.css"),
+        new ExtractTextPlugin({
+            filename:'[name].css',
+            allChunks:true
+        })
     ]
 };
 
